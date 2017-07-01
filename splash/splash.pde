@@ -1,13 +1,3 @@
-/*
- * An example of how to use
- * Processing's 3D features.
- *
- * Features:
- * - Setting up a 3D viewport
- * - Drawing plane and sphere primitives
- * - 3D-transformations
- */
- 
 int CANVAS_WIDTH = 1920;
 int CANVAS_HEIGHT = 1080;
 
@@ -36,43 +26,14 @@ void setup() {
   sp = new Splat();
   translate(0,0,0);
   
-  
   cols = w / scl;
-  rows = h/ scl;
+  rows = h / scl;
   terrain = new float[cols][rows];
-}
-
-void cameraSetup() {
-  // Center the view
-  translate(width/2, height/2, 0);
-  // Move up and backwards - away from the origin
-  translate(0, 800, -2000);
-  // Rotate the viewport a bit with mouse
-  //rotateY((mouseX - width/2) * 0.001);
-  //rotateX((mouseY - height/2) * -0.001);
 }
 
 void newCam(float s){
   //while
   camera(1,-5000+500*s,0,0,0,0,0,1,0);
-}
-
-void ground() {
-  terGen();
-  if (true) return;
-  
-  
-  // Draw the ground plane
-  stroke(0);
-  fill(100); //plane colour
-  
-  pushMatrix();
-  // Rotate the plane by 90 degrees so it's laying on the ground 
-  rotateX(PI/2);
-  scale(10.0);
-  // Draw the plane
-  rect(0, 0, 100, 100);
-  popMatrix();
 }
 
 void axis() {
@@ -85,28 +46,21 @@ void axis() {
   stroke(0);
 }
 
-
 float timer() {
     float secs = millis() / 1000.0;
     return secs;
 }
 
 void draw() {
-  axis();
+  float secs = timer();
+//  axis();
+  lights();
+  newCam(secs);
 
   if (secs < 13) background(0);
-  //cameraSetup();
-  lights();
 
-  float secs = timer();
-  
-    newCam(secs);
+  terGen();
 
-  //secs += 2;
-  
-  
-  ground();
-  
   b.dropBall(secs);
   
   if (secs > 5 && secs < 7) {
@@ -123,8 +77,8 @@ void draw() {
     //delay(30);
     //background(60);
     sp.up(secs);
-
   }
+  
   if (secs > 12) {
     if (secs < 13) background(0);
     pushMatrix();
@@ -138,7 +92,6 @@ void draw() {
     sphere(200);
     
     popMatrix();
-    
     
     pushMatrix();
       int j = 0;
