@@ -7,68 +7,68 @@ class Splat {
     this.dead = true;
   }
   
-  void up(float s) {
+  void up(PGraphics pg, float s) {
     up = true;
-    bounce(s);
+    bounce(pg, s);
   }
   
   void down() {
     up = false;
   }
   
-  void splash(float s) {
+  void splash(PGraphics pg, float s) {
     if (dead || up) return;
     
-    pushMatrix();
+    pg.pushMatrix();
     
-      rotateY(PI/5);
+      pg.rotateY(PI/5);
       //axis();
-      fill(100, 255, 100);
+      pg.fill(100, 255, 100);
     
-      sphereDetail(3);
+      pg.sphereDetail(3);
       int i = 1;
-      stroke(255);
+      pg.stroke(255);
       while (i<30) {
-        pushMatrix();
+        pg.pushMatrix();
           pos = 100*s;
-          translate(100*s,0,0);
+          pg.translate(100*s,0,0);
           //translate(abs((s*10)) * -2000 / s,0,0);
-          sphere(50);
+          pg.sphere(50);
           i++;
-        popMatrix();
-        rotateY(PI/5);
+        pg.popMatrix();
+        pg.rotateY(PI/5);
       } 
       i=1;
 
-    popMatrix();
+    pg.popMatrix();
   }
   
-   void bounce(float s) {
+   void bounce(PGraphics pg, float s) {
     if (!up) return;
     
-    pushMatrix();
+    pg.pushMatrix();
 
-      rotateY(PI/5);
-      axis();
-      fill(100, 255, 100);
+      pg.rotateY(PI/5);
+      axis(pg);
+      pg.fill(100, 255, 100);
     
-      sphereDetail(1);
+      pg.sphereDetail(1);
       int i = 1;
       while (i<s+30) {
-        rotateY(s*(PI/4));
-        translate(0,0,0);
+        pg.rotateY(s*(PI/4));
+        pg.translate(0,0,0);
         
-        pushMatrix();
-          translate(pos-50*s,-100*s+pos,0);
-          stroke(255,200,200);
-          sphere(50);
-          i++;
-        popMatrix();
+        pg.pushMatrix();
+        pg.translate(pos-50*s,-100*s+pos,0);
+        pg.stroke(255,200,200);
+        pg.sphere(50);
+        i++;
+        pg.popMatrix();
         
-        rotateY(PI/5);
+        pg.rotateY(PI/5);
       }
       i=1;
            
-    popMatrix();
+    pg.popMatrix();
   }
 }

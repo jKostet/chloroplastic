@@ -12,81 +12,95 @@ int h = 3000;
 
 float[][] terrain;
 
-void newCam(float s){
+void newCam(PGraphics pg, float s){
   //while
-  camera(1,-5000+500*s,0,0,0,0,0,1,0);
+  pg.camera(200*s,-5000+500*s,200*cos(s),0,50*s,0,0,1,0);
+
+  if(s>= 8) {
+    //println(s);
+    float T3=s-8;
+    pg.camera(200*8 +50*T3,-5000+500*8+500*cos(T3),200*cos(8)+5000*sin(T3),0,50*8,0,0,1,0); 
+  }
+  
+  if(s>=12) {
+    float T4=s-12;
+    pg.camera(200*8 +50*12,-5000+500*8+500*cos(12),200*cos(8)+5000*sin(12),0,50*8,0,0,1,0);
+  }
+  
 }
 
-void axis() {
-  stroke(255, 0, 0);
-  line(-1000, 0, 0, 1000, 0, 0);
-  stroke(0, 255, 0);
-  line(0, -1000, 0, 0, 1000, 0);
-  stroke(0, 0, 255);
-  line(0, 0, -1000, 0, 0, 1000);
-  stroke(0);
+void axis(PGraphics pg) {
+  pg.stroke(255, 0, 0);
+  pg.line(-1000, 0, 0, 1000, 0, 0);
+  pg.stroke(0, 255, 0);
+  pg.line(0, -1000, 0, 0, 1000, 0);
+  pg.stroke(0, 0, 255);
+  pg.line(0, 0, -1000, 0, 0, 1000);
+  pg.stroke(0);
 }
 
-float timer(float startTimeMillis) {
-    float secs = (millis()-startTimeMillis) / 1000.0;
-    return secs;
+float timer(float startingTimeMillis) {
+  float secs = (millis()-startingTimeMillis) / 1000.0;
+  return secs;
 }
 
-void drawSplash(float startTimeMillis) {
-  float secs = timer(startTimeMillis);
-//  axis();
-  lights();
-  newCam(secs);
+void drawSplash(PGraphics pg, float startingTimeMillis) {
+  pg.beginDraw();
+  float secs = timer(startingTimeMillis);
+  //  axis();
+  pg.lights();
+  newCam(pg, secs);
 
-  if (secs < 13) background(0);
+  if (secs < 13) pg.background(0);
 
-  terGen();
+  terGen(pg);
 
-  b.dropBall(secs);
+  b.dropBall(pg, secs);
   
   if (secs > 5 && secs < 7) {
     b.kill();
-    sp.splash(secs);
+    sp.splash(pg, secs);
   }
   
   if (secs > 7 && secs< 12) {
-    fill(255,20);
-    pushMatrix();
-    translate(0,0,0);
-    rect(0,0,width, height);
-    popMatrix();
+    pg.fill(255,20);
+    pg.pushMatrix();
+    pg.translate(0,0,0);
+    pg.rect(0,0,width, height);
+    pg.popMatrix();
     //delay(30);
     //background(60);
-    sp.up(secs);
+    sp.up(pg, secs);
   }
   
   if (secs > 12) {
-    if (secs < 13) background(0);
-    pushMatrix();
+    if (secs < 13) pg.background(0);
+    pg.pushMatrix();
     
-    translate(0,-600,0);
+    pg.translate(0,-600,0);
     sp.down();
-    stroke(255);
-    fill(0,255,0);
-    sphereDetail(3);
-    rotateY(PI/secs);
-    sphere(200);
+    pg.stroke(255);
+    pg.fill(0,255,0);
+    pg.sphereDetail(3);
+    pg.rotateY(PI/secs);
+    pg.sphere(200);
     
-    popMatrix();
+    pg.popMatrix();
     
-    pushMatrix();
+    pg.pushMatrix();
       int j = 0;
       while (j<100+10*secs) {
-        fill(255,20);
-        translate(random(-width, width), random(-height,height),random(-1000,1000));
-        sphere(random(150,300));
+        pg.fill(255,20);
+        pg.translate(random(-width, width), random(-height,height),random(-1000,1000));
+        pg.sphere(random(150,300));
         j++;
       }
-    popMatrix();
+    pg.popMatrix();
   }
+  pg.endDraw();
 }
 
-void terGen() {
+void terGen(PGraphics pg) {
   
   float yoff = 0;
   for (int y = 0; y < rows; y++) {
@@ -100,19 +114,19 @@ void terGen() {
     yoff += 0.2;
   }
 
-  stroke(255,0,0);
+  pg.stroke(255,0,0);
   //noFill();
 
-  pushMatrix();
-    translate(-width, 0,-width);
-    rotateX(PI/2);
-    for (int y = 0; y < rows-1; y++) {
-      beginShape(TRIANGLE_STRIP);
-      for (int x = 0; x < cols; x++) {
-        vertex(x*scl, y*scl, terrain[x][y]);
-        vertex(x*scl, (y+1)*scl, terrain[x][y+1]);
-      }
-      endShape();
+  pg.pushMatrix();
+  pg.translate(-width, 0,-width);
+  pg.rotateX(PI/2);
+  for (int y = 0; y < rows-1; y++) {
+    pg.beginShape(TRIANGLE_STRIP);
+    for (int x = 0; x < cols; x++) {
+      pg.vertex(x*scl, y*scl, terrain[x][y]);
+      pg.vertex(x*scl, (y+1)*scl, terrain[x][y+1]);
     }
-  popMatrix();
+      pg.endShape();
+    }
+  pg.popMatrix();
 }

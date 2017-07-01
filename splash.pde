@@ -1,4 +1,4 @@
-/*int CANVAS_WIDTH = 1920;
+int CANVAS_WIDTH = 1920;
 int CANVAS_HEIGHT = 1080;
 
 float secs;
@@ -11,25 +11,6 @@ int w = 3000;
 int h = 3000;
 
 float[][] terrain;
-
-
-void settings() {
-  // The P3D parameter enables accelerated 3D rendering.
-  fullScreen();
-  size(CANVAS_WIDTH, CANVAS_HEIGHT, P3D);
-}
-
-void setup() {
-  rectMode(CENTER);
-  this.secs = timer();
-  b = new Ball();
-  sp = new Splat();
-  translate(0,0,0);
-  
-  cols = w / scl;
-  rows = h / scl;
-  terrain = new float[cols][rows];
-}
 
 void newCam(float s){
   //while
@@ -46,13 +27,13 @@ void axis() {
   stroke(0);
 }
 
-float timer() {
-    float secs = millis() / 1000.0;
+float timer(float startTimeMillis) {
+    float secs = (millis()-startTimeMillis) / 1000.0;
     return secs;
 }
 
-void draw() {
-  float secs = timer();
+void drawSplash(float startTimeMillis) {
+  float secs = timer(startTimeMillis);
 //  axis();
   lights();
   newCam(secs);
@@ -134,4 +115,4 @@ void terGen() {
       endShape();
     }
   popMatrix();
-}*/
+}
