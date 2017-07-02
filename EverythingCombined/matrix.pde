@@ -76,10 +76,11 @@ void drawMatrix(PGraphics pg, float startTimeMillis) {
   if (secs >= time) {
     pg.translate(sphereX, 100*sin(1.2*secs-time), 0);
   }
-  else if (secs >= time2) {
+  if (secs >= time2) {
     pg.translate(0, 0, -1200*(secs-time2));
-  } else {
-    pg.translate(0, 0, 1800-70*time);
+  }
+  if (secs < time){
+    pg.translate(0, 0, 2000-70*time);
   }
   // Note that this rotation should be considered happening *before* the
   // translations specified above. The transformations are written in the reverse
