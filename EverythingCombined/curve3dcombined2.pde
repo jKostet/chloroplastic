@@ -6,6 +6,8 @@ void drawCurve(PGraphics pg, float startingTimeMillis) {
   //camera(20, 138, 80, 0, 0, 0, 0, 0, -1);
   // camera(2*mouseX, 2*mouseY, 80, 0, 0, 0, 0, 0, -1); 
    
+   //Ball b0 = new Ball();
+   //b0.dropBall(pg, 5);
    pg.noFill();
    pg.stroke(255);
    float dt = millis()-startingTimeMillis; //time doesn't start at 0ms, so this -850 is to compensate

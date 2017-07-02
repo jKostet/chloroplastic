@@ -1,6 +1,7 @@
 void drawMatrix(PGraphics pg, float startTimeMillis) {
   pg.beginDraw();
-  pg.background(64, 64, 80);
+  //pg.background(64, 64, 80);
+  pg.background(0);
       
   float secs = (millis()-startTimeMillis) / 1000.0;
 
@@ -24,9 +25,9 @@ void drawMatrix(PGraphics pg, float startTimeMillis) {
   pg.pushMatrix();
   
   pg.scale(6.0);
-  float time2 = 64;
+  float time2 = 32;
   if (secs < time2) {
-    pg.stroke(0, 255, 100, (4*secs)%255);
+    pg.stroke(0, 255, 100, (4*secs)%225);
   } else {
     float period = 5;
     mult = 2*pi/period;
@@ -45,10 +46,10 @@ void drawMatrix(PGraphics pg, float startTimeMillis) {
     if (k == 2) {
       pg.rotateZ(PI/2);
     }
-    for (int i = -10; i <= 10; i = i+2) {
-      for (int j = -10; j <= 10; j = j+2) {
+    for (int i = -15; i <= 15; i = i+3) {
+      for (int j = -15; j <= 15; j = j+3) {
         pg.translate(0, 0, 25*i);
-        pg.line(25*j, 4*CANVAS_HEIGHT, 25*j, -4*CANVAS_HEIGHT);
+        pg.line(25*j+180, 4*CANVAS_HEIGHT, 25*j, -4*CANVAS_HEIGHT);
         pg.translate(0, 0, -25*i);
       }
     }
@@ -58,9 +59,10 @@ void drawMatrix(PGraphics pg, float startTimeMillis) {
 
   pg.lights();
   pg.stroke(127, 127, 127);
-  pg.fill(127, 127, 127);
+  //pg.fill(127, 127, 127);
   
-  
+  pg.fill(100, 255, 100);
+    
   // Draw the sphere
   
   pg.pushMatrix();
@@ -83,6 +85,7 @@ void drawMatrix(PGraphics pg, float startTimeMillis) {
   pg.rotateY(secs);
   
   // Draw the sphere
+  pg.sphereDetail(10);
   pg.sphere(sphereRadius);
   pg.popMatrix();
 

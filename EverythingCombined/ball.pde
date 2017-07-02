@@ -1,6 +1,8 @@
 class Ball {
   float ypos = 0.0;
   boolean dead = false;
+  float sphereRadius = 100;
+
    
   void kill(){
     dead = true;
@@ -12,7 +14,6 @@ class Ball {
     pg.fill(100, 255, 100);
     pg.pushMatrix();
     
-      float sphereRadius = 100;
       //float sphereY = abs(sin(s*-1.0)) * -10000.0 / 10*s;
       float sphereY = -5000 +1000*s;
       

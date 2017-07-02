@@ -42,7 +42,7 @@ void draw() {
     //double bg_red = moonlander.getValue("background_red");
     //println(minimcontrol.getCurrentTime());
     float t1 = 10;
-    float t2 = 70+t1;
+    float t2 = 58+t1;
     if (millis()/1000.0 < t1) {
       drawCurve(pg1, 850);
       image(pg1, 0, 0);

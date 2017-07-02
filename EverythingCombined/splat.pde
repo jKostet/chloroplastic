@@ -49,7 +49,7 @@ class Splat {
     pg.pushMatrix();
 
       pg.rotateY(PI/5);
-      axis(pg);
+      //axis(pg);
       pg.fill(100, 255, 100);
     
       pg.sphereDetail(1);
