@@ -42,15 +42,25 @@ void draw() {
     //double bg_red = moonlander.getValue("background_red");
     //println(minimcontrol.getCurrentTime());
     float t1 = 10;
-    float t2 = 58+t1;
+    float t2 = 38+t1;
+    float t3 = 20+t2;
     if (millis()/1000.0 < t1) {
       drawCurve(pg1, 850);
       image(pg1, 0, 0);
     } else if (millis()/1000.0 < t2) {
       drawMatrix(pg2, t1*1000.0);
       image(pg2, 0, 0);
-    } else {
+    } else if (millis()/1000.0 < t3) {
       drawSplash(pg3, t2*1000.0);
       image(pg3, 0, 0);
+    /*} else {*/
+       //pg3.clear();
+       /*background(0);
+       translate(displayWidth/2, displayHeight/2, 0);
+       sphereDetail(1);
+       sphere(50);
+       fill(255);
+       textSize(122);
+       text("Fin.", 100, 300);*/
     }
 }
