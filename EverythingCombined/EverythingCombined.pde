@@ -1,16 +1,18 @@
-import moonlander.library.*;
+//import moonlander.library.*;
 import ddf.minim.*;
 
 PGraphics pg1, pg2, pg3;
 
-Moonlander moonlander;
+//Moonlander moonlander;
 
 void settings() {
   // The P3D parameter enables accelerated 3D rendering.
-  //fullScreen();
-  //size(CANVAS_WIDTH, CANVAS_HEIGHT, P3D);
-  size(640, 480, P3D);
+  fullScreen();
+  size(CANVAS_WIDTH, CANVAS_HEIGHT, P3D);
+  //size(640, 480, P3D);
 }
+
+//MinimController minimcontrol;
 
 void setup() {
   rectMode(CENTER);
@@ -25,28 +27,28 @@ void setup() {
   pg1 = createGraphics(displayWidth, displayHeight, P3D);
   pg2 = createGraphics(displayWidth, displayHeight, P3D);
   pg3 = createGraphics(displayWidth, displayHeight, P3D);
-  
-  moonlander = Moonlander.initWithSoundtrack(this, "chassis.mp3", 205, 4);
+  Minim minim = new Minim(this);
+  AudioPlayer song = minim.loadFile("chassis.mp3");
+  /*minimcontrol = new MinimController(song, 205, 8);
+  moonlander = new Moonlander(this, minimcontrol);
   moonlander.start();
+  //minimcontrol.play();*/
+  song.play();
 }
 
 void draw() {
-    moonlander.update();
+    //minimcontrol.play();
+    //moonlander.update();
+    //double bg_red = moonlander.getValue("background_red");
+    //println(minimcontrol.getCurrentTime());
     float t1 = 10;
     float t2 = 70+t1;
-    //drawSplash(pg1, 0);
-    //image(pg1, 0, 0);
-    //float timer1 = 0;
-    //float timer2 = 0;
     if (millis()/1000.0 < t1) {
       drawCurve(pg1, 850);
       image(pg1, 0, 0);
-      //timer1 = millis();
-      //println(timer1);
     } else if (millis()/1000.0 < t2) {
       drawMatrix(pg2, t1*1000.0);
       image(pg2, 0, 0);
-      //timer2 = millis();
     } else {
       drawSplash(pg3, t2*1000.0);
       image(pg3, 0, 0);
