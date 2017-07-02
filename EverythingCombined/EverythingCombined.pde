@@ -1,9 +1,15 @@
+import moonlander.library.*;
+import ddf.minim.*;
+
 PGraphics pg1, pg2, pg3;
+
+Moonlander moonlander;
 
 void settings() {
   // The P3D parameter enables accelerated 3D rendering.
-  fullScreen();
-  size(CANVAS_WIDTH, CANVAS_HEIGHT, P3D);
+  //fullScreen();
+  //size(CANVAS_WIDTH, CANVAS_HEIGHT, P3D);
+  size(640, 480, P3D);
 }
 
 void setup() {
@@ -19,9 +25,13 @@ void setup() {
   pg1 = createGraphics(displayWidth, displayHeight, P3D);
   pg2 = createGraphics(displayWidth, displayHeight, P3D);
   pg3 = createGraphics(displayWidth, displayHeight, P3D);
+  
+  moonlander = Moonlander.initWithSoundtrack(this, "chassis.mp3", 205, 4);
+  moonlander.start();
 }
 
 void draw() {
+    moonlander.update();
     float t1 = 10;
     float t2 = 70+t1;
     //drawSplash(pg1, 0);

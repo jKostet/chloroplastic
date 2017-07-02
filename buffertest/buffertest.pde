@@ -12,5 +12,5 @@ void draw() {
   pg.stroke(255);
   pg.line(pg.width*0.5, pg.height*0.5, mouseX, mouseY);
   pg.endDraw();
-  image(pg, 50, 50); 
+  image(pg, 0, 0); 
 }
