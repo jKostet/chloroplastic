@@ -80,7 +80,7 @@ void drawMatrix(PGraphics pg, float startTimeMillis) {
     pg.translate(0, 0, -1200*(secs-time2));
   }
   if (secs < time){
-    pg.translate(0, 0, 2000-70*time);
+    pg.translate(0, 0, 1900-70*time);
   }
   // Note that this rotation should be considered happening *before* the
   // translations specified above. The transformations are written in the reverse
