@@ -71,7 +71,7 @@ void drawSplash(PGraphics pg, float startingTimeMillis) {
     pg.fill(255,20);
     pg.pushMatrix();
     pg.translate(0,0,0);
-    pg.rect(0,0,width, height);
+    //pg.rect(0,0,width, height);
     pg.popMatrix();
     //delay(30);
     //background(60);
@@ -86,7 +86,7 @@ void drawSplash(PGraphics pg, float startingTimeMillis) {
     sp.down();
     pg.stroke(255);
     pg.fill(0,255,0);
-    pg.sphereDetail(3);
+    pg.sphereDetail(7);
     pg.rotateY(PI/secs);
     pg.sphere(200);
     

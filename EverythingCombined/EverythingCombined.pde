@@ -55,7 +55,7 @@ void draw() {
     } else if (se < t2) {
       drawMatrix(pg2, t1*1000.0);
       image(pg2, 0, 0);
-    } else if (se < t3) {
+    } else if (se < t3 + 5) {
       drawSplash(pg3, t2*1000.0);
       image(pg3, 0, 0);
     /*} else {*/
@@ -85,7 +85,7 @@ void hud(float s) {
     textMode(MODEL);
     textSize(50);
     fill(100,255,100);
-    if (s > 3 && s < 6) text("handle", 70, 700); // curve
+    if (s > 3 && s < 6) text("handle1", 70, 700); // curve
     if (s > 12 && s < 15) text("Dr. Phoenix", 70, 100);
     if (s > 50 && s < 53) text("jkostet", 1100, 700);
     
