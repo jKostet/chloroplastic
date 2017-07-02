@@ -19,20 +19,17 @@ void drawCurve(PGraphics pg, float startingTimeMillis) {
    float sizeY=100;
    int k=1;
 
+    //camera starting position
    pg.camera(20/pow((2.3-2)/k,1), 30/pow((2.3-2)/k,1.5), -pow((2.3-2)/k,4)+100, 0, 0, -pow((2.3-2)/k,4)+100 - 100, 0, 0, -1);
+    
+    //camera stays in place for 2.3 and then starts to move
     if(t>=2.3){
    pg.camera(20/pow((t-2)/k,1), 30/pow((t-2)/k,1.5), -pow((t-2)/k,4)+100, 0, 0, -pow((t-2)/k,4)+100 - 100, 0, 0, -1);
-   //path1=PVector(20/pow((t-2)/k,1),30/pow((t-2)/k,1.5),-pow((t-2)/k,4)+100);
-
     }
 
-   
- 
    //drawCoordinateSystem(origin,sizeX);
    drawFloor2(pg, origin);
-  
-  
-  
+    
    //start another time T2
    float T2=0;
   
@@ -57,25 +54,26 @@ void drawCurve(PGraphics pg, float startingTimeMillis) {
          //drawRing(origin, i*200*exp(-pow(t-10,2)),50,1, 250);
        }
     }
+    
       //pg.fill(100, 255, 100);
+      
+    //the sphere before camera start moving  
     if (t <= 2.5) {
         pg.sphereDetail(20);
            pg.sphere(5);  
     }
  
+   //the sphere starts to drop
     if (t >= 2.5) {
-         //pg.fill(100, 255, 100);
-           //pg.fill(100, t);
-           //pg.stroke(255/(t-2.5));
-             //pg.stroke(127, 127, 127);
-             pg.sphereDetail(20);
+     pg.sphereDetail(20);
     pg.pushMatrix();
     pg.translate(0,0,-100*(pow((t-2.5),1.3)));
      pg.sphere(5); 
-   
-   pg.popMatrix();
+     pg.popMatrix();
     }
+    
    pg.endDraw();
+   
 }
 
 void drawCoordinateSystem(PGraphics pg, PVector location, float size) {
