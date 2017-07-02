@@ -27,6 +27,11 @@ void newCam(PGraphics pg, float s){
     pg.camera(200*8 +50*12,-5000+500*8+500*cos(12),200*cos(8)+5000*sin(12),0,50*8,0,0,1,0);
   }
   
+  if(s>= 16) {
+    //println(s);
+    float T3=s-8;
+    pg.camera(200*8 +50*T3,-5000+500*8+500*cos(T3),200*cos(8)+5000*sin(T3),0,50*8,0,0,1,0); 
+  }
 }
 
 void axis(PGraphics pg) {
