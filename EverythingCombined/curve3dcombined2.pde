@@ -33,7 +33,7 @@ void drawCurve(PGraphics pg, float startingTimeMillis) {
    //start another time T2
    float T2=0;
   
-    if (t>=3) {
+   if (t>=3) {
       T2=t-3; 
       for (int i = 0; i <= 20; i+=1) {
         PVector ringloc1 = new PVector(50*cos(i*2*PI/20),50*sin(i*2*PI/20),0); 
