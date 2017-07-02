@@ -44,7 +44,7 @@ void draw() {
     //double bg_red = moonlander.getValue("background_red");
     //println(minimcontrol.getCurrentTime());
     float t1 = 10;
-    float t2 = 38+t1;
+    float t2 = 34+t1;
     float t3 = 20+t2;
     
     float se = millis()/1000.0;

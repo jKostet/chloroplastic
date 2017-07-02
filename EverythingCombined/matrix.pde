@@ -25,7 +25,7 @@ void drawMatrix(PGraphics pg, float startTimeMillis) {
   pg.pushMatrix();
   
   pg.scale(6.0);
-  float time2 = 32;
+  float time2 = 26;
   if (secs < time2) {
     pg.stroke(0, 255, 100, (4*secs)%225);
   } else {
@@ -36,7 +36,7 @@ void drawMatrix(PGraphics pg, float startTimeMillis) {
   for (int k = 0; k <= 2; k++) {
     pg.strokeWeight(1);
     
-    pg.translate(0, 0, (1.8*(secs*secs))%(2*25));
+    pg.translate(0, 0, (2.8*(secs*secs))%(2*25));
     
     if (k == 1) {
       pg.strokeWeight(0.1);
@@ -76,8 +76,10 @@ void drawMatrix(PGraphics pg, float startTimeMillis) {
   if (secs >= time) {
     pg.translate(sphereX, 100*sin(1.2*secs-time), 0);
   }
-  if (secs >= time2) {
-    pg.translate(0, 0, -800*(secs-time2));
+  else if (secs >= time2) {
+    pg.translate(0, 0, -1200*(secs-time2));
+  } else {
+    pg.translate(0, 0, 1800-70*time);
   }
   // Note that this rotation should be considered happening *before* the
   // translations specified above. The transformations are written in the reverse
