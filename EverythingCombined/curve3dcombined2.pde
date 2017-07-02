@@ -19,18 +19,25 @@ void drawCurve(PGraphics pg, float startingTimeMillis) {
    float sizeY=100;
    int k=1;
 
-   PVector path1=new PVector(20/pow(t/k,1),30/pow(t/k,1.5),-pow(t/k,4)+100);
+   pg.camera(20/pow((2.3-2)/k,1), 30/pow((2.3-2)/k,1.5), -pow((2.3-2)/k,4)+100, 0, 0, -pow((2.3-2)/k,4)+100 - 100, 0, 0, -1);
+    if(t>=2.3){
+   pg.camera(20/pow((t-2)/k,1), 30/pow((t-2)/k,1.5), -pow((t-2)/k,4)+100, 0, 0, -pow((t-2)/k,4)+100 - 100, 0, 0, -1);
+   //path1=PVector(20/pow((t-2)/k,1),30/pow((t-2)/k,1.5),-pow((t-2)/k,4)+100);
 
-   pg.camera(path1.x, path1.y, path1.z, 0, 0, path1.z - 100, 0, 0, -1);
+    }
+
+   
  
    //drawCoordinateSystem(origin,sizeX);
    drawFloor2(pg, origin);
   
+  
+  
    //start another time T2
    float T2=0;
   
-    if (t>=1) {
-      T2=t-1; 
+    if (t>=3) {
+      T2=t-3; 
       for (int i = 0; i <= 20; i+=1) {
         PVector ringloc1 = new PVector(50*cos(i*2*PI/20),50*sin(i*2*PI/20),0); 
         drawRing(pg, ringloc1, 0+1*log(i)*log(20*T2+1),50,1, exp(-T2+6));
@@ -42,17 +49,33 @@ void drawCurve(PGraphics pg, float startingTimeMillis) {
     float T1=0;
   
     //if enough time has elapsed, then launch rings
-    if (t>=3.1) {
-       T1=t-3.1; 
+    if (t>=5.1) {
+       T1=t-5.1; 
        PVector ringloc2 = new PVector(origin.x,origin.y,-400);
        for (int i = 0; i <= 20; i+=1) {
          drawRing(pg, ringloc2, 0+8*log(i)*log(20*T1+1),50,1, exp(-T1+6));
          //drawRing(origin, i*200*exp(-pow(t-10,2)),50,1, 250);
        }
     }
-    
-    pg.endDraw();
+      //pg.fill(100, 255, 100);
+    if (t <= 2.5) {
+        pg.sphereDetail(20);
+           pg.sphere(5);  
+    }
  
+    if (t >= 2.5) {
+         //pg.fill(100, 255, 100);
+           //pg.fill(100, t);
+           //pg.stroke(255/(t-2.5));
+             //pg.stroke(127, 127, 127);
+             pg.sphereDetail(20);
+    pg.pushMatrix();
+    pg.translate(0,0,-100*(pow((t-2.5),1.3)));
+     pg.sphere(5); 
+   
+   pg.popMatrix();
+    }
+   pg.endDraw();
 }
 
 void drawCoordinateSystem(PGraphics pg, PVector location, float size) {
